@@ -1,0 +1,30 @@
+.jumbotron {
+	background-color:blue;
+	color:white;
+}
+
+body {
+/*	background-image: url("../images/bg.jpg"); */
+}
+
+.question {
+	font-size: 25px;
+	font-weight: 700;
+	padding-left: 75px;
+}
+
+
+.col-md-5 {
+	font-size: 25px;
+	font-weight: 700;
+}
+
+.col-md-1 {
+	padding-left: 79px;
+}
+input[type='radio'] { 
+	transform: scale(1.5); 
+	margin-top: 7px;
+	
+	
+}

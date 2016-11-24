@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Austin Trivia</title>
+	<!-- Added link to the jQuery Library -->
+	<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+	<!-- Added a link to Bootstrap-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- Object -->
+	<script src="assets/javascript/triviaobject.js"></script>
+	<!-- Functions -->
+	<script src="assets/javascript/trivia.js"></script>
+</head>
+<body>
+	<!-- Jumbotron for Title -->
+	<div class="jumbotron">
+		<h1 class="text-center">Austin Trivia</h1>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div  class="col-sm-7 question">
+				<div id="question"> 
+				</div>
+			</div>
+		</div>
+		<div class="row" id="choices"> 
+			<div class="col-md-1">
+				<form id="rf"> 
+					<input type="radio" name="optradio" value="a">
+				</form>
+			</div>
+			<div class="col-md-5">
+				<label id="radioA"> </label>
+			</div>
+		</div> <!--row -->		
+		<div class="row"> 
+			<div class="col-md-1">
+				<form id="rf"> 
+					<input type="radio" name="optradio" value="b">
+				</form>
+			</div>
+			<div class="col-md-5">
+				<label id="radioB"> </label>
+			</div>
+		</div> <!--row -->	
+		<div class="row"> 
+			<div class="col-md-1">
+				<form  id="rf"> 
+					<input type="radio" name="optradio" value="c">
+				</form>
+			</div>
+			<div class="col-md-5">
+				<label id="radioC"> </label>
+			</div>
+		</div> <!--row -->
+		<div class="row"> 
+			<div class="col-md-1">
+				<form id="rf"> 
+					<input type="radio" name="optradio" value="d">
+				</form>
+			</div>
+			<div class="col-md-5">
+				<label id="radioD"> </label>
+			</div>
+		</div> <!--row -->			
+		
+	</div><!--container -->
+			
+</body>
+</html>
