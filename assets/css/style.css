@@ -10,7 +10,7 @@ body {
 .question {
 	font-size: 25px;
 	font-weight: 700;
-	padding-left: 75px;
+	padding-left: 34px;
 }
 
 
@@ -19,12 +19,16 @@ body {
 	font-weight: 700;
 }
 
+.col-md-1:hover {
+	background-color: green;
+}
+
 .col-md-1 {
-	padding-left: 79px;
+	padding-left: 40px;
 }
 input[type='radio'] { 
 	transform: scale(1.5); 
-	margin-top: 7px;
+	margin-top: 14px;
 }
 
 
