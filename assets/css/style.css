@@ -25,6 +25,39 @@ body {
 input[type='radio'] { 
 	transform: scale(1.5); 
 	margin-top: 7px;
+}
+
+
+
+.col-md-4 {
+	font-size: 25px;
+	font-weight: 700;
+	margin-top: 60px;
+	margin-left: 0px;
+	color: blue;
+	border-style: solid;
+	text-align: center;
+}
+.clock {
+	font-size: 25px;
+	font-weight: 700;
+	margin-top: 60px;
+	margin-left: 0px;	
+	text-align: center;
+	background: black;
+ 	color: green;
+    
+}
+#losses{
 	
+	color: red;
 	
+}
+
+#gameOver{
+	color: #16cfb8;
+	font-size: 30px;
+	
+	margin-left: 296;
+
 }

@@ -3,13 +3,26 @@
 var trivia = 
 		{
 			gameOver: false,
+			answer: false,
 			score: {
 				correct: 0,
 				wrong: 0
 			},
+			qTimer: 6,
+			timerOff: 0,
 			timer: function(){
-
+					console.log(trivia.qTimer);
+					$("#clock").html("Time Left: 00:0" + trivia.qTimer);
+					trivia.qTimer --;
+					if (trivia.qTimer <= -1 ) { 
+						trivia.qTimer = 6;
+						trivia.answer = false;
+						trivia.timerDone();
+					}
 			},//function timer
+			timerDone: function(){
+				clearInterval(trivia.timerOff);
+			},
 			question: 
 			[ 
 				{

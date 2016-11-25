@@ -3,6 +3,8 @@ var numQuestions = trivia.question.length;
 var askedQuestions =[];
 var q;
 
+
+
 //Initialize askedQuestions.  None of the questions have been asked 	
 for (var i=0; i < numQuestions; i++){
  	askedQuestions[i] = false;
@@ -11,53 +13,50 @@ for (var i=0; i < numQuestions; i++){
 //Get Next Question
 $(document).ready(function(){
 
-	
-	
 		
 function makeQuestion()	{
-		q= getQuestion();
+
+		q = getQuestion();
+
 		if (q.questionText !== undefined) {
 				$("#question").html(q.questionText);
 				console.log(q.questionText);
 				getChoices(q.choice);
+
+			} //if questionText undefined
+		else {
+			$("#gameOver").html("GAME OVER !");
+			throw new Error(); // forced exit reached last question in trivia object
+			}
 				
-				//check radio button not doing anything
-
-  			$("rf input:radio").triggerHandler("click"); 
-
-		/*		if ($('#a')[0].checked === true){
-					if (q.choice.a.isAnswer){
-						trivia.score.correct += 1;
-					}
-					else{
-						trivia.score.wrong += 1
-					}
-	
-				}	*/
-		} //if questionText undefined
-
-				
-} //function makeQuestion  set timer to -1 comapre + cleartimer when you detect last q
+} //function makeQuestion  
 
 //event delegation
-			$("body").on('click', '#rf input:radio', function(){
-					makeQuestion();
-					console.log(this.value + " clicked");
-					if ( this.value === "a") {console.log ("It's a")}
-					//unclick button
-					$(this).attr('checked', false);
-					
-					
+$("body").on('click', '#rf input:radio', function(){					
+	
+	console.log(this.value + " clicked");
+	//unclick button
+	$(this).attr('checked', false);
+	trivia.answer = getWhatWasClicked(this.value, q.choice);
+	
+	//start timer
+	trivia.timerOff = setInterval(trivia.timer,1000);
+	
+	trivia.answer ?  trivia.score.correct ++ : trivia.score.wrong ++ ;	
+	$("#wins").html("Wins: " + trivia.score.correct);
+	$("#losses").html("Losses: " + trivia.score.wrong);
 
-    
-   			});
-			//display first question
-					makeQuestion();
-					console.log('last makeQuestion')
+	console.log("answer: " + trivia.answer);
+	
+	makeQuestion();
 
-
+}); //event delegation
+//display first question
+trivia.timerOff = setInterval(trivia.timer,1000);
+makeQuestion();
+console.log('makeQuestion first pass');
+	
 }) //document ready
-
 
 // return pointer to random question and mark that question as used in the askedQuestions global array
 function	getQuestion(){
@@ -91,3 +90,24 @@ function getChoices (question){
 	console.log("c :" + question.c.caption);
 	console.log("d :" + question.d.caption);
 } //fucntion getChoices
+
+// parameter is letter corresponding to radio button chosen 
+function getWhatWasClicked (letter, possibleAnswers){
+	var ans = false;
+	switch (letter){		
+		case "a":
+			possibleAnswers.a.isAnswer ? ans = true : ans = false;			
+			break;
+		case "b":
+			possibleAnswers.b.isAnswer ? ans = true : ans = false;			
+			break;
+		case "c":
+			possibleAnswers.c.isAnswer ? ans = true : ans =  false;			
+			break;
+		case "d":
+			possibleAnswers.d.isAnswer ? ans = true : ans =  false;			
+			break;
+	}//switch
+	return ans;
+}//function getWhatWasClicked
+
