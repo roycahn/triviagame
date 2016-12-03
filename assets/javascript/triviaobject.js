@@ -8,20 +8,43 @@ var trivia =
 				correct: 0,
 				wrong: 0
 			},
-			qTimer: 6,
+			qTimer: 10,
 			timerOff: 0,
+
+		makeQuestion: function()	{
+
+		q = getQuestion(); 
+		
+		if (q.questionText !== undefined) {
+				$("#question").html(q.questionText);
+				console.log(q.questionText);
+				getChoices(q.choice);
+
+			} //if questionText undefined
+		else {
+			$("#gameOver").html("GAME OVER !");
+			throw new Error(); // forced exit reached last question in trivia object
+			}
+				
+		}, //function makeQuestion  
+
 			timer: function(){
-					console.log(trivia.qTimer);
+					
 					$("#clock").html("Time Left: 00:0" + trivia.qTimer);
 					trivia.qTimer --;
 					if (trivia.qTimer <= -1 ) { 
-						trivia.qTimer = 6;
+						trivia.qTimer = 10;
 						trivia.answer = false;
-						trivia.timerDone();
-					}
+						trivia.score.wrong ++;
+						$("#losses").html("Losses: " + trivia.score.wrong);
+						trivia.makeQuestion();
+						//trivia.timerDone();
+
+					}	
 			},//function timer
 			timerDone: function(){
 				clearInterval(trivia.timerOff);
+
 			},
 			question: 
 			[ 

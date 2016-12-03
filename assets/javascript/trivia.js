@@ -13,23 +13,6 @@ for (var i=0; i < numQuestions; i++){
 //Get Next Question
 $(document).ready(function(){
 
-		
-function makeQuestion()	{
-
-		q = getQuestion();
-
-		if (q.questionText !== undefined) {
-				$("#question").html(q.questionText);
-				console.log(q.questionText);
-				getChoices(q.choice);
-
-			} //if questionText undefined
-		else {
-			$("#gameOver").html("GAME OVER !");
-			throw new Error(); // forced exit reached last question in trivia object
-			}
-				
-} //function makeQuestion  
 
 //event delegation
 $("body").on('click', '#rf input:radio', function(){					
@@ -40,7 +23,9 @@ $("body").on('click', '#rf input:radio', function(){
 	trivia.answer = getWhatWasClicked(this.value, q.choice);
 	
 	//start timer
-	trivia.timerOff = setInterval(trivia.timer,1000);
+	if(askedQuestions.indexOf(false) !== -1){
+		trivia.timerOff = setInterval(trivia.timer,1000);
+	}
 	
 	trivia.answer ?  trivia.score.correct ++ : trivia.score.wrong ++ ;	
 	$("#wins").html("Wins: " + trivia.score.correct);
@@ -48,12 +33,13 @@ $("body").on('click', '#rf input:radio', function(){
 
 	console.log("answer: " + trivia.answer);
 	
-	makeQuestion();
+	trivia.makeQuestion(); 
 
 }); //event delegation
-//display first question
+//Start Timer
 trivia.timerOff = setInterval(trivia.timer,1000);
-makeQuestion();
+//display first question
+trivia.makeQuestion(); 
 console.log('makeQuestion first pass');
 	
 }) //document ready
@@ -67,13 +53,22 @@ function	getQuestion(){
 		var i = Math.floor((Math.random() * numQuestions) + 0);		
 		}//while
 	
+	
+
 	if (askedQuestions.indexOf(false) !== -1){ 
 			askedQuestions[i] = true;
-			return trivia.question[i];
+			q = trivia.question[i];
+			return q;
 		} 
 		else {
-			trivia.gameOver = true;
-			return "Game Over";
+			if (askedQuestions.indexOf(false) === -1   ||  trivia.qTimer === 6 ) {
+				trivia.gameOver = true;
+				trivia.timerDone();
+				q = "Game Over";
+			}
+				
+			
+			return q; 
 		}
 	
 } //function getQuestion
